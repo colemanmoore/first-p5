@@ -5,7 +5,7 @@ const CANVAS_HEIGHT = 500;
 const BG_COLOR = '#fae';
 const STARTING_RADIUS = 100;
 const BALL_COUNT = 20;
-const OPACITY = 179;
+const OPACITY = 199;
 
 new p5(p => {
 
@@ -34,7 +34,12 @@ new p5(p => {
             this._y = startY;
             this._width = STARTING_RADIUS;
             this._height = STARTING_RADIUS;
-            this._shade = '#abc';
+            this._shades = [
+                p.color(170, 187, 204, OPACITY),
+                p.color(79, 212, 255, OPACITY),
+                p.color(221, 185, 170, OPACITY),
+                p.color(255, 221, 221, OPACITY)
+            ];
         }
 
         move() {
@@ -49,12 +54,7 @@ new p5(p => {
 
         changeColor() {
             const idx = p.round(this._x/7) % 4;
-            this._shade = [
-                p.color(170, 187, 204, OPACITY),
-                p.color(79, 212, 255, OPACITY),
-                p.color(221, 185, 170, OPACITY),
-                p.color(255, 221, 221, OPACITY)
-            ][idx];
+            this._shade = this._shades[idx];
         }
 
         redraw() {
